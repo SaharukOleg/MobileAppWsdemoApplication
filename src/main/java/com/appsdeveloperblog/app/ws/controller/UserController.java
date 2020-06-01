@@ -1,5 +1,6 @@
 package com.appsdeveloperblog.app.ws.controller;
 
+import com.appsdeveloperblog.app.ws.UserDetailsRequstModel;
 import com.appsdeveloperblog.app.ws.model.UserRest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -33,10 +34,24 @@ public class UserController {
         return new ResponseEntity<>(userRest, HttpStatus.OK);
     }
 
-    @PostMapping
-    public String createUser() {
-        return "create user was called";
+    @PostMapping(consumes = {
+            MediaType.APPLICATION_XML_VALUE,
+            MediaType.APPLICATION_JSON_VALUE
+    },           produces = {
+            MediaType.APPLICATION_XML_VALUE,
+            MediaType.APPLICATION_JSON_VALUE
+    })
+    public ResponseEntity<UserRest> createUser(@RequestBody UserDetailsRequstModel userDetails) {
+
+        UserRest userRest = new UserRest();
+        userRest.setEmail(userDetails.getEmail());
+        userRest.setFirstName(userDetails.getFirstName());
+        userRest.setLastName(userDetails.getLastName());
+
+        return new ResponseEntity<>(userRest, HttpStatus.OK);
     }
+
+
 
     @PutMapping
     public String updateUser() {
