@@ -1,4 +1,4 @@
-package com.appsdeveloperblog.app.ws;
+package com.appsdeveloperblog.app.ws.request;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
